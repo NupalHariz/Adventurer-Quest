@@ -132,6 +132,7 @@ public class Main {
                 }
 
                 player.setCurrentHP(player.getMaxHP());
+                player.setCurrentHP(player.getMaxHP());
                 player.setCurrentMana(player.getMaxMana());
             }
 
