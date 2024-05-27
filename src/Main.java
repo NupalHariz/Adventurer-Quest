@@ -13,12 +13,10 @@ public class Main {
         double enemyBaseATK = 0;
         double enemyBaseMana = 0;
 
-
         boolean validCharacter = false;
         int chooseCharacter;
         Character player = new Knight();
         Character enemy = new Slime();
-
 
         System.out.printf("\n||" + "=".repeat(55) + "%s" + "=".repeat(56) + "||", "ADVENTURER QUEST");
         System.out.printf("\n||%-127s||", "Selamat datang di kota Syrup.");
@@ -29,7 +27,6 @@ public class Main {
         System.out.println("\n||" + "=".repeat(127) + "||");
 
         // Choosing Character
-        
 
         do {
             System.out.print("||Role yang dipilih: ");
@@ -92,7 +89,7 @@ public class Main {
             }
 
             if (enemy.getCurrentHP() <= 0) {
-                if (enemy instanceof Slime){
+                if (enemy instanceof Slime) {
                     slimeKillCounter++;
                 }
 
@@ -134,6 +131,11 @@ public class Main {
                 player.setCurrentHP(player.getMaxHP());
                 player.setCurrentHP(player.getMaxHP());
                 player.setCurrentMana(player.getMaxMana());
+                if (player instanceof Knight) {
+                    if (((Knight) player).getArmor() < player.getMaxHP() * 0.3) {
+                        ((Knight) player).setArmor(player.getMaxHP() * 0.3);
+                    }
+                }
             }
 
             if (player.getCurrentHP() <= 0) {
@@ -230,9 +232,9 @@ public class Main {
             quest = input.nextInt();
             switch (quest) {
                 case 1:
-                    enemyBaseHP = 250 + (15 * killCounter);
-                    enemyBaseATK = 50 + (2.5 * killCounter);
-                    enemyBaseMana = 100 + (10 * killCounter);
+                    enemyBaseHP = 250 + (2.5 * killCounter);
+                    enemyBaseATK = 50 + (0.625 * killCounter);
+                    enemyBaseMana = 100 + (5 * killCounter);
 
                     enemy = new Slime(enemyBaseHP, enemyBaseATK, enemyBaseMana);
                     validEnemy = false;
@@ -240,9 +242,9 @@ public class Main {
                     System.out.printf("\n||%-127s||", "Basmi slime yang kamu temui lalu kembalilah dengan selamat");
                     break;
                 case 2:
-                    enemyBaseHP = 300 + (20 * killCounter);
-                    enemyBaseATK = 55 + (3 * killCounter);
-                    enemyBaseMana = 100 + (10 * killCounter);
+                    enemyBaseHP = 300 + (5 * killCounter);
+                    enemyBaseATK = 55 + (0.75 * killCounter);
+                    enemyBaseMana = 100 + (5 * killCounter);
 
                     enemy = new Spider(enemyBaseHP, enemyBaseATK, enemyBaseMana);
                     validEnemy = false;
@@ -284,7 +286,7 @@ public class Main {
                 System.out.printf("||%-127s||", "Tolong inputkan angka yang benar");
             } else if (action == 2 && player.getCurrentMana() < 10) {
                 System.out.printf("||%-127s||", "Mana tidak cukup");
-            } else if (action == 3 && player.getCurrentMana() < 30) {
+            } else if (action == 3 && player.getCurrentMana() < 50) {
                 System.out.printf("||%-127s||", "Mana tidak cukup");
             } else if (action == 4 && player.getCurrentMana() < 5) {
                 System.out.printf("||%-127s||", "Mana tidak cukup");
